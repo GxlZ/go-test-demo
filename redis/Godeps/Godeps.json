@@ -1,0 +1,50 @@
+{
+	"ImportPath": "go-test-demo/redis",
+	"GoVersion": "go1.10",
+	"GodepVersion": "v80",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/go-redis/redis",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal/consistenthash",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal/hashtag",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal/pool",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal/proto",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal/singleflight",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		},
+		{
+			"ImportPath": "github.com/go-redis/redis/internal/util",
+			"Comment": "v6.13.2-2-g7e6413d",
+			"Rev": "7e6413d4675d151fe8fbd067779f58f9dc3b2128"
+		}
+	]
+}
