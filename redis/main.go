@@ -1,12 +1,13 @@
 package main
 
-import "google.golang.org/genproto/googleapis/cloud/redis/v1beta1"
-
+import (
+	"github.com/go-redis/redis"
+)
 func main() {
 
 }
 
-func NewUser(redisClient *redis.client) *user {
+func NewUser(redisClient *goredis.Client) *user {
 	return &user{}
 }
 
