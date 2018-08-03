@@ -1,0 +1,26 @@
+package: go-test-demo/go-kit-truss
+import:
+- package: github.com/go-kit/kit
+  version: ^0.7.0
+  subpackages:
+  - endpoint
+  - transport/grpc
+  - transport/http
+- package: github.com/golang/protobuf
+  version: ^1.1.0
+  subpackages:
+  - proto
+- package: github.com/gorilla/mux
+  version: ^1.6.2
+- package: github.com/pkg/errors
+  version: ^0.8.0
+- package: github.com/tuneinc/truss
+  subpackages:
+  - deftree/googlethirdparty
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: google.golang.org/grpc
+  version: ^1.14.0
+  subpackages:
+  - metadata

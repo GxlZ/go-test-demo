@@ -1,0 +1,89 @@
+hash: b6cfbe9d0ccd0a5851c5909428bfb458b6a062c1f3c8644b60173e229c18e7ef
+updated: 2018-08-03T23:39:33.359262778+08:00
+imports:
+- name: github.com/go-kit/kit
+  version: ca4112baa34cb55091301bdc13b1420a122b1b9e
+  subpackages:
+  - endpoint
+  - log
+  - transport/grpc
+  - transport/http
+- name: github.com/go-logfmt/logfmt
+  version: 390ab7935ee28ec6b286364bba9b4dd6410cb3d5
+- name: github.com/go-stack/stack
+  version: 259ab82a6cad3992b4e21ff5cac294ccb06474bc
+- name: github.com/golang/protobuf
+  version: b4deda0973fb4c70b50d226b1af49f3da59f5265
+  subpackages:
+  - proto
+  - protoc-gen-go/descriptor
+  - ptypes
+  - ptypes/any
+  - ptypes/duration
+  - ptypes/timestamp
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/mux
+  version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
+- name: github.com/kr/logfmt
+  version: b84e30acd515aadc4b783ad4ff83aff3299bdfe0
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/tuneinc/truss
+  version: 7dc4d5d85c38d1e393875bb52ec3130828f493ea
+  subpackages:
+  - deftree/googlethirdparty
+- name: golang.org/x/net
+  version: f4c29de78a2a91c00474a2e689954305c350adf9
+  subpackages:
+  - context
+  - http/httpguts
+  - http2
+  - http2/hpack
+  - idna
+  - internal/timeseries
+  - trace
+- name: golang.org/x/sys
+  version: 0ffbfd41fbef8ffcf9b62b0b0aa3a5873ed7a4fe
+  subpackages:
+  - unix
+- name: golang.org/x/text
+  version: 96e34ec0e18a62a1e59880c7bf617b655efecb66
+  subpackages:
+  - secure/bidirule
+  - transform
+  - unicode/bidi
+  - unicode/norm
+- name: google.golang.org/genproto
+  version: daca94659cb50e9f37c1b834680f2e46358f10b0
+  subpackages:
+  - googleapis/rpc/status
+- name: google.golang.org/grpc
+  version: 32fb0ac620c32ba40a4626ddf94d90d12cce3455
+  subpackages:
+  - balancer
+  - balancer/base
+  - balancer/roundrobin
+  - codes
+  - connectivity
+  - credentials
+  - encoding
+  - encoding/proto
+  - grpclog
+  - internal
+  - internal/backoff
+  - internal/channelz
+  - internal/envconfig
+  - internal/grpcrand
+  - internal/transport
+  - keepalive
+  - metadata
+  - naming
+  - peer
+  - resolver
+  - resolver/dns
+  - resolver/passthrough
+  - stats
+  - status
+  - tap
+testImports: []
