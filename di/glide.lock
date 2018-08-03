@@ -1,10 +1,6 @@
-hash: b40d5a1bf2a54f33f8ceccf0e82b3eeea44c6edc1efb0149ac17b439514997f9
-updated: 2018-08-03T23:07:55.339414821+08:00
+hash: 89c0d12d3ced6c2dea116aebc8b12dabac371e6d2902958d7c9a4640a82df446
+updated: 2018-08-03T23:27:38.839759084+08:00
 imports:
-- name: github.com/davecgh/go-spew
-  version: 8991bc29aa16c548c550c7ff78260e27b9ab7c73
-  subpackages:
-  - spew
 - name: github.com/facebookgo/inject
   version: f23751cae28bef101a38b79266785d3b574cf7e8
 - name: github.com/facebookgo/structtag
@@ -14,6 +10,40 @@ imports:
   subpackages:
   - internal
   - redis
+- name: github.com/smartystreets/assertions
+  version: 7678a5452ebea5b7090a6b163f844c133f523da2
+  subpackages:
+  - internal/go-render/render
+  - internal/oglematchers
 - name: go.uber.org/dig
   version: d100de9c8cc8358591507951141bc107713ba671
-testImports: []
+  subpackages:
+  - internal/digreflect
+testImports:
+- name: github.com/davecgh/go-spew
+  version: 8991bc29aa16c548c550c7ff78260e27b9ab7c73
+  subpackages:
+  - spew
+- name: github.com/gopherjs/gopherjs
+  version: 0892b62f0d9fb5857760c3cfca837207185117ee
+  subpackages:
+  - js
+- name: github.com/jtolds/gls
+  version: 77f18212c9c7edc9bd6a33d383a7b545ce62f064
+- name: github.com/pmezard/go-difflib
+  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  subpackages:
+  - difflib
+- name: github.com/smartystreets/goconvey
+  version: 9e8dc3f972df6c8fcc0375ef492c24d0bb204857
+  subpackages:
+  - convey
+  - convey/gotest
+  - convey/reporting
+- name: github.com/stretchr/objx
+  version: b8b73a35e9830ae509858c10dec5866b4d5c8bff
+- name: github.com/stretchr/testify
+  version: f35b8ab0b5a2cef36673838d662e249dd9c94686
+  subpackages:
+  - assert
+  - mock
