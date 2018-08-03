@@ -2,8 +2,6 @@ package main
 
 import (
 	"testing"
-	//"fmt"
-	//"github.com/stretchr/testify/mock"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
