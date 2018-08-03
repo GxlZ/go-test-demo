@@ -2,6 +2,10 @@ package: go-test-demo/redis
 import:
 - package: github.com/go-redis/redis
   version: ^6.13.2
+- package: github.com/gomodule/redigo
+  version: ^2.0.0
+  subpackages:
+  - redis
 testImport:
 - package: github.com/stretchr/testify
   version: ^1.2.2
