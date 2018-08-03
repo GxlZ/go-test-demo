@@ -1,6 +1,8 @@
-hash: 9eefe23869aec323891d01bc4ac26c20b770be9fc3d8af0cf4aa942dc3af6b6c
-updated: 2018-08-03T16:48:32.50043417+08:00
+hash: f68201caeca71bc734eb3686f1c121de50e6e8230552c25a46aa76ebe35a846c
+updated: 2018-08-03T16:55:50.600692612+08:00
 imports:
 - name: github.com/facebookgo/inject
   version: f23751cae28bef101a38b79266785d3b574cf7e8
+- name: github.com/facebookgo/structtag
+  version: 217e25fb96916cc60332e399c9aa63f5c422ceed
 testImports: []
