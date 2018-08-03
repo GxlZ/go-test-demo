@@ -22,7 +22,7 @@ func (this MockRedisConn) Do(commandName string, args ...interface{}) (reply int
 
 func TestGetUsername(t *testing.T) {
 	userId := 1
-	wantUsername := "user_one"
+	wantUsername := "jack"
 
 	redisConn := MockRedisConn{}
 	redisConn.On(

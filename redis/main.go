@@ -8,7 +8,7 @@ import (
 func main() {
 	redisConn, _ := redis.Dial("tcp", "127.0.0.1:6379")
 	user := NewUser(redisConn)
-	user.SetUsername(1)
+	user.SetUsername(1, "jack")
 	username, _ := user.GetUsername(1)
 	fmt.Println("username:", username)
 }
@@ -25,7 +25,7 @@ func (this *user) GetUsername(id int) (string, error) {
 	return redis.String(this.redisConn.Do("GET", id))
 }
 
-func (this *user) SetUsername(id int) bool {
-	ok, _ := redis.Bool(this.redisConn.Do("SET", id, "user_one"))
+func (this *user) SetUsername(id int, username string) bool {
+	ok, _ := redis.Bool(this.redisConn.Do("SET", id, username))
 	return ok
 }
