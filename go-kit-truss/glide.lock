@@ -1,5 +1,5 @@
-hash: fa37478d85d8dc2668696f12def66e58648c563c832609d8d3bd5680d45ee425
-updated: 2018-08-04T00:02:08.982058416+08:00
+hash: ab8e9e05b0b3aed79565c6f61dfaab7ec255fa07221f2c05549b4a1bb1d19be9
+updated: 2018-08-04T00:08:13.666632647+08:00
 imports:
 - name: github.com/go-kit/kit
   version: ca4112baa34cb55091301bdc13b1420a122b1b9e
@@ -21,6 +21,10 @@ imports:
   - ptypes/any
   - ptypes/duration
   - ptypes/timestamp
+- name: github.com/gomodule/redigo
+  version: 9c11da706d9b7902c6da69c592f75637793fe121
+  subpackages:
+  - redis
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
@@ -35,6 +39,8 @@ imports:
   - deftree/googlethirdparty
 - name: go.uber.org/dig
   version: d100de9c8cc8358591507951141bc107713ba671
+  subpackages:
+  - internal/digreflect
 - name: golang.org/x/net
   version: f4c29de78a2a91c00474a2e689954305c350adf9
   subpackages:
