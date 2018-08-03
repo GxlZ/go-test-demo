@@ -1,5 +1,5 @@
-hash: b6cfbe9d0ccd0a5851c5909428bfb458b6a062c1f3c8644b60173e229c18e7ef
-updated: 2018-08-03T23:39:33.359262778+08:00
+hash: fa37478d85d8dc2668696f12def66e58648c563c832609d8d3bd5680d45ee425
+updated: 2018-08-04T00:02:08.982058416+08:00
 imports:
 - name: github.com/go-kit/kit
   version: ca4112baa34cb55091301bdc13b1420a122b1b9e
@@ -33,6 +33,8 @@ imports:
   version: 7dc4d5d85c38d1e393875bb52ec3130828f493ea
   subpackages:
   - deftree/googlethirdparty
+- name: go.uber.org/dig
+  version: d100de9c8cc8358591507951141bc107713ba671
 - name: golang.org/x/net
   version: f4c29de78a2a91c00474a2e689954305c350adf9
   subpackages:

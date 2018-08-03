@@ -24,3 +24,5 @@ import:
   version: ^1.14.0
   subpackages:
   - metadata
+- package: go.uber.org/dig
+  version: ^1
