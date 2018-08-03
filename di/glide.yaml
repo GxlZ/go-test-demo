@@ -2,3 +2,5 @@ package: go-test-demo/di
 import:
 - package: github.com/facebookgo/inject
 - package: github.com/facebookgo/structtag
+- package: go.uber.org/dig
+  version: ^1.3.0

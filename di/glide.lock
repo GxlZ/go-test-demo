@@ -1,8 +1,19 @@
-hash: f68201caeca71bc734eb3686f1c121de50e6e8230552c25a46aa76ebe35a846c
-updated: 2018-08-03T16:55:50.600692612+08:00
+hash: b40d5a1bf2a54f33f8ceccf0e82b3eeea44c6edc1efb0149ac17b439514997f9
+updated: 2018-08-03T23:07:55.339414821+08:00
 imports:
+- name: github.com/davecgh/go-spew
+  version: 8991bc29aa16c548c550c7ff78260e27b9ab7c73
+  subpackages:
+  - spew
 - name: github.com/facebookgo/inject
   version: f23751cae28bef101a38b79266785d3b574cf7e8
 - name: github.com/facebookgo/structtag
   version: 217e25fb96916cc60332e399c9aa63f5c422ceed
+- name: github.com/gomodule/redigo
+  version: 9c11da706d9b7902c6da69c592f75637793fe121
+  subpackages:
+  - internal
+  - redis
+- name: go.uber.org/dig
+  version: d100de9c8cc8358591507951141bc107713ba671
 testImports: []
