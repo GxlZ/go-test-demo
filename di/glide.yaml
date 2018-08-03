@@ -1,0 +1,3 @@
+package: go-test-demo/di
+import:
+- package: github.com/facebookgo/inject
