@@ -2,11 +2,9 @@ package main
 
 import (
 	goredis "github.com/go-redis/redis"
-	redigo "redigo/redis"
 )
 
 func main() {
-	redigo.NewConn()
 
 	redis := NewRedis()
 
