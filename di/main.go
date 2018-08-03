@@ -1,59 +1,37 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"os"
-
+	"github.com/gomodule/redigo/redis"
 	"github.com/facebookgo/inject"
+	"github.com/davecgh/go-spew/spew"
 )
 
-type HomePlanetRenderApp struct {
-	NameAPI   *NameAPI   `inject:""`
-	PlanetAPI *PlanetAPI `inject:""`
-}
-
-func (a *HomePlanetRenderApp) Render(id uint64) string {
-	return fmt.Sprintf(
-		"%s is from the planet %s.",
-		a.NameAPI.Name(id),
-		a.PlanetAPI.Planet(id),
-	)
-}
-
-type NameAPI struct {
-	HTTPTransport http.RoundTripper `inject:""`
-}
-
-func (n *NameAPI) Name(id uint64) string {
-	return "Spock"
-}
-
-type PlanetAPI struct {
-	HTTPTransport http.RoundTripper `inject:""`
-}
-
-func (p *PlanetAPI) Planet(id uint64) string {
-	return "Vulcan"
-}
-
 func main() {
+	redisConn, _ := redis.Dial("tcp", "127.0.0.1:6379")
+
 	var g inject.Graph
-	var a HomePlanetRenderApp
-	err := g.Provide(
-		&inject.Object{Value: &a},
-		&inject.Object{Value: http.DefaultTransport},
+	user := user{}
+	g.Provide(
+		&inject.Object{Value: &user},
+		&inject.Object{Value: redisConn},
 	)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
 
-	if err := g.Populate(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	user.SetUsername(1, "jack")
+	//username, _ := user.GetUsername(1)
+	//fmt.Println("username:", username)
+}
 
-	fmt.Println(a.Render(42))
+type user struct {
+	RedisConn *redis.Conn `inject:""`
+}
 
+func (this *user) GetUsername(id int) (string, error) {
+
+	return redis.String((*this.RedisConn).Do("GET", id))
+}
+
+func (this *user) SetUsername(id int, username string) bool {
+	spew.Dump(this.RedisConn)
+	ok, _ := redis.Bool((*this.RedisConn).Do("SET", id, username))
+	return ok
 }
