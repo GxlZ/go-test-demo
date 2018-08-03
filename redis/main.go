@@ -1,21 +1,52 @@
 package main
 
 import (
-	"github.com/go-redis/redis"
+	goredis "github.com/go-redis/redis"
+	redigo "redigo/redis"
 )
+
 func main() {
+	redigo.NewConn()
+
+	redis := NewRedis()
+
+	user := NewUser(redis)
+
+	user.GetUsername()
 
 }
 
-func NewUser(redisClient *goredis.Client) *user {
-	return &user{}
+type redis interface {
+	getClient() *goredis.Client
+}
+
+type client struct {
+	options *goredis.Options
+}
+
+func (this client) getClient() *goredis.Client {
+	return goredis.NewClient(&goredis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
+}
+
+func NewRedis() redis {
+	return client{}
+}
+
+func NewUser(redis redis) *user {
+	return &user{redis}
 }
 
 type user struct {
+	redis redis
 }
 
-func (this *user) Get() {
-
+func (this *user) GetUsername() string {
+	c := this.redis.getClient()
+	return c.Get("aaa").String()
 }
 
 func (this *user) Set() {

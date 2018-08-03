@@ -1,11 +1,28 @@
 package main
 
-import "testing"
+import (
+	"testing"
+	goredis "github.com/go-redis/redis"
+	"github.com/stretchr/testify/mock"
+	"log"
+)
 
-func TestGetUser(t *testing.T) {
-
+type MockRedis struct {
+	mock.Mock
 }
 
-func TestSetUser(t *testing.T) {
+func (this MockRedis) getClient() *goredis.Client {
+	args := this.Mock.Called()
+	return args.Get(0).(*goredis.Client)
+}
 
+func TestUserGet(t *testing.T) {
+	redis := MockRedis{}
+	redis.On("getClient",
+	).Return(goredis.NewClient(&goredis.Options{}))
+
+	user := NewUser(redis)
+	username := user.GetUsername()
+
+	log.Println(username)
 }
