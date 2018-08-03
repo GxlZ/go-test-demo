@@ -32,7 +32,7 @@ func TestGetUsername(t *testing.T) {
 	).Return(wantUsername, nil)
 
 	Convey(fmt.Sprintf("user.name get test, id:%d", userId), t, func() {
-		user := NewUser(redisConn)
+		user := NewUser()
 		username, _ := user.GetUsername(userId)
 		So(username, ShouldEqual, wantUsername)
 	})
