@@ -23,14 +23,13 @@ func (this MockRedisConn) Do(commandName string, args ...interface{}) (reply int
 func TestGetUsername(t *testing.T) {
 	userId := 1
 	wantUsername := "user_one"
+
 	redisConn := MockRedisConn{}
 	redisConn.On(
 		"Do",
 		"GET",
 		userId,
 	).Return(wantUsername, nil)
-	redisConn.Do("GET", 1)
-	redisConn.Do("GET", 1)
 
 	Convey(fmt.Sprintf("user.name get test, id:%d", userId), t, func() {
 		user := NewUser(redisConn)
