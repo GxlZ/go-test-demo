@@ -2,27 +2,40 @@ package main
 
 import (
 	"testing"
-	goredis "github.com/go-redis/redis"
 	"github.com/stretchr/testify/mock"
-	"log"
+	"github.com/gomodule/redigo/redis"
+	. "github.com/smartystreets/goconvey/convey"
+	"fmt"
 )
 
-type MockRedis struct {
+type MockRedisConn struct {
 	mock.Mock
+	redis.Conn
 }
 
-func (this MockRedis) getClient() *goredis.Client {
-	args := this.Mock.Called()
-	return args.Get(0).(*goredis.Client)
+func (this MockRedisConn) Do(commandName string, args ...interface{}) (reply interface{}, err error) {
+	argsList := []interface{}{commandName}
+	argsList = append(argsList, args...)
+	mockArgs := this.Mock.Called(argsList...)
+	return mockArgs.Get(0), mockArgs.Error(1)
 }
 
-func TestUserGet(t *testing.T) {
-	redis := MockRedis{}
-	redis.On("getClient",
-	).Return(goredis.NewClient(&goredis.Options{}))
+func TestGetUsername(t *testing.T) {
+	userId := 1
+	wantUsername := "user_one"
+	redisConn := MockRedisConn{}
+	redisConn.On(
+		"Do",
+		"GET",
+		userId,
+	).Return(wantUsername, nil)
+	redisConn.Do("GET", 1)
+	redisConn.Do("GET", 1)
 
-	user := NewUser(redis)
-	username := user.GetUsername()
+	Convey(fmt.Sprintf("user.name get test, id:%d", userId), t, func() {
+		user := NewUser(redisConn)
+		username, _ := user.GetUsername(userId)
+		So(username, ShouldEqual, wantUsername)
+	})
 
-	log.Println(username)
 }

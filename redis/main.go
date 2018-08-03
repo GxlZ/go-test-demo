@@ -1,52 +1,31 @@
 package main
 
 import (
-	goredis "github.com/go-redis/redis"
+	"github.com/gomodule/redigo/redis"
+	"fmt"
 )
 
 func main() {
-
-	redis := NewRedis()
-
-	user := NewUser(redis)
-
-	user.GetUsername()
-
+	redisConn, _ := redis.Dial("tcp", "127.0.0.1:6379")
+	user := NewUser(redisConn)
+	user.SetUsername(1)
+	username, _ := user.GetUsername(1)
+	fmt.Println("username:", username)
 }
 
-type redis interface {
-	getClient() *goredis.Client
-}
-
-type client struct {
-	options *goredis.Options
-}
-
-func (this client) getClient() *goredis.Client {
-	return goredis.NewClient(&goredis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-}
-
-func NewRedis() redis {
-	return client{}
-}
-
-func NewUser(redis redis) *user {
-	return &user{redis}
+func NewUser(redisConn redis.Conn) *user {
+	return &user{redisConn}
 }
 
 type user struct {
-	redis redis
+	redisConn redis.Conn
 }
 
-func (this *user) GetUsername() string {
-	c := this.redis.getClient()
-	return c.Get("aaa").String()
+func (this *user) GetUsername(id int) (string, error) {
+	return redis.String(this.redisConn.Do("GET", id))
 }
 
-func (this *user) Set() {
-
+func (this *user) SetUsername(id int) bool {
+	ok, _ := redis.Bool(this.redisConn.Do("SET", id, "user_one"))
+	return ok
 }
