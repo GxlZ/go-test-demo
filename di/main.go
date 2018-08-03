@@ -7,26 +7,26 @@ import (
 )
 
 type user struct {
-	RedisConn *redis.Conn
+	RedisConn redis.Conn
 }
 
 func (this *user) GetUsername(id int) (string, error) {
 
-	return redis.String((*this.RedisConn).Do("GET", id))
+	return redis.String(this.RedisConn.Do("GET", id))
 }
 
 func (this *user) SetUsername(id int, username string) bool {
-	ok, _ := redis.Bool((*this.RedisConn).Do("SET", id, username))
+	ok, _ := redis.Bool(this.RedisConn.Do("SET", id, username))
 	return ok
 }
 
-func NewUser(redisConn *redis.Conn) *user {
+func NewUser(redisConn redis.Conn) *user {
 	return &user{redisConn}
 }
 
-func NewRedis() *redis.Conn {
+func NewRedis() redis.Conn {
 	redisConn, _ := redis.Dial("tcp", "127.0.0.1:6379")
-	return &redisConn
+	return redisConn
 }
 
 func makeDi() *dig.Container {
