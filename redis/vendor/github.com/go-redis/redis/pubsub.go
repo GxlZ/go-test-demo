@@ -113,17 +113,17 @@ func (c *PubSub) _subscribe(cn *pool.Conn, redisCmd string, channels ...string) 
 	return writeCmd(cn, cmd)
 }
 
-func (c *PubSub) releaseConn(cn *pool.Conn, err error, allowTimeout bool) {
+func (c *PubSub) releaseConn(cn *pool.Conn, err error) {
 	c.mu.Lock()
-	c._releaseConn(cn, err, allowTimeout)
+	c._releaseConn(cn, err)
 	c.mu.Unlock()
 }
 
-func (c *PubSub) _releaseConn(cn *pool.Conn, err error, allowTimeout bool) {
+func (c *PubSub) _releaseConn(cn *pool.Conn, err error) {
 	if c.cn != cn {
 		return
 	}
-	if internal.IsBadConn(err, allowTimeout) {
+	if internal.IsBadConn(err, true) {
 		c._reconnect()
 	}
 }
@@ -135,6 +135,12 @@ func (c *PubSub) _closeTheCn() error {
 		c.cn = nil
 	}
 	return err
+}
+
+func (c *PubSub) reconnect() {
+	c.mu.Lock()
+	c._reconnect()
+	c.mu.Unlock()
 }
 
 func (c *PubSub) _reconnect() {
@@ -221,7 +227,7 @@ func (c *PubSub) subscribe(redisCmd string, channels ...string) error {
 	}
 
 	err = c._subscribe(cn, redisCmd, channels...)
-	c._releaseConn(cn, err, false)
+	c._releaseConn(cn, err)
 	return err
 }
 
@@ -239,7 +245,7 @@ func (c *PubSub) Ping(payload ...string) error {
 
 	cn.SetWriteTimeout(c.opt.WriteTimeout)
 	err = writeCmd(cn, cmd)
-	c.releaseConn(cn, err, false)
+	c.releaseConn(cn, err)
 	return err
 }
 
@@ -332,7 +338,7 @@ func (c *PubSub) ReceiveTimeout(timeout time.Duration) (interface{}, error) {
 
 	cn.SetReadTimeout(timeout)
 	err = c.cmd.readReply(cn)
-	c.releaseConn(cn, err, timeout > 0)
+	c.releaseConn(cn, err)
 	if err != nil {
 		return nil, err
 	}
@@ -440,9 +446,7 @@ func (c *PubSub) initChannel() {
 					hasPing = false
 					_ = c.Ping()
 				} else {
-					c.mu.Lock()
-					c._reconnect()
-					c.mu.Unlock()
+					c.reconnect()
 				}
 			case <-c.exit:
 				return

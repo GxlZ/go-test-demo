@@ -322,6 +322,7 @@ func ExampleClient_Watch() {
 
 func ExamplePubSub() {
 	pubsub := client.Subscribe("mychannel1")
+	defer pubsub.Close()
 
 	// Wait for confirmation that subscription is created before publishing anything.
 	_, err := pubsub.Receive()
@@ -338,20 +339,8 @@ func ExamplePubSub() {
 		panic(err)
 	}
 
-	time.AfterFunc(time.Second, func() {
-		// When pubsub is closed channel is closed too.
-		_ = pubsub.Close()
-	})
-
-	// Consume messages.
-	for {
-		msg, ok := <-ch
-		if !ok {
-			break
-		}
-		fmt.Println(msg.Channel, msg.Payload)
-	}
-
+	msg := <-ch
+	fmt.Println(msg.Channel, msg.Payload)
 	// Output: mychannel1 hello
 }
 

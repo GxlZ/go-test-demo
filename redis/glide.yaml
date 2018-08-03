@@ -1,0 +1,9 @@
+package: go-test-demo/redis
+import:
+- package: github.com/go-redis/redis
+  version: ^6.13.2
+testImport:
+- package: github.com/stretchr/testify
+  version: ^1.2.2
+  subpackages:
+  - mock
