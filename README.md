@@ -8,7 +8,7 @@
 
 > [http handler](http)
 
-> [redigo](redis)
+> [redis](redis)
 
 > [di](di)
 
