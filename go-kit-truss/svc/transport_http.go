@@ -51,7 +51,7 @@ func MakeHTTPHandler(endpoints Endpoints) http.Handler {
 	}
 	m := mux.NewRouter()
 
-	m.Methods("POST").Path("get").Handler(httptransport.NewServer(
+	m.Methods("GET").Path("/user/username/v1").Handler(httptransport.NewServer(
 		endpoints.GetUsernameV1Endpoint,
 		DecodeHTTPGetUsernameV1ZeroRequest,
 		EncodeHTTPGenericResponse,

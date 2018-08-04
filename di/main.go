@@ -6,27 +6,26 @@ import (
 	"fmt"
 )
 
-type user struct {
+type User struct {
 	RedisConn redis.Conn
 }
 
-func (this *user) GetUsername(id int) (string, error) {
+func (this *User) GetUsername(id int) (string, error) {
 
 	return redis.String(this.RedisConn.Do("GET", id))
 }
 
-func (this *user) SetUsername(id int, username string) bool {
+func (this *User) SetUsername(id int, username string) bool {
 	ok, _ := redis.Bool(this.RedisConn.Do("SET", id, username))
 	return ok
 }
 
-func NewUser(redisConn redis.Conn) *user {
-	return &user{redisConn}
+func NewUser(redisConn redis.Conn) User {
+	return User{redisConn}
 }
 
-func NewRedis() redis.Conn {
-	redisConn, _ := redis.Dial("tcp", "127.0.0.1:6379")
-	return redisConn
+func NewRedis() (redis.Conn, error) {
+	return redis.Dial("tcp", "127.0.0.1:6379")
 }
 
 func makeDi() *dig.Container {
@@ -41,7 +40,7 @@ func main() {
 
 	var username string
 
-	di.Invoke(func(user *user) {
+	di.Invoke(func(user User) {
 		user.SetUsername(1, "jack")
 		username, _ = user.GetUsername(1)
 	})

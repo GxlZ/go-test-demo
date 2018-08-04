@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package hello;
+package pb;
 
 import "github.com/tuneinc/truss/deftree/googlethirdparty/annotations.proto";
 
 service User {
     rpc GetUsernameV1 (Req) returns (Resp) {
         option (google.api.http) = {
-          post: "get"
+          get: "/user/username/v1"
         };
     }
 }

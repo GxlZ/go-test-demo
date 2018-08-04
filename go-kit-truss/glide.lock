@@ -1,5 +1,5 @@
-hash: ab8e9e05b0b3aed79565c6f61dfaab7ec255fa07221f2c05549b4a1bb1d19be9
-updated: 2018-08-04T00:08:13.666632647+08:00
+hash: 8566e5a6e13feea10394fd2cc9503aa5edd377dd5c823c6c0e22241e5ad55037
+updated: 2018-08-04T12:47:59.461309+08:00
 imports:
 - name: github.com/go-kit/kit
   version: ca4112baa34cb55091301bdc13b1420a122b1b9e
@@ -24,6 +24,7 @@ imports:
 - name: github.com/gomodule/redigo
   version: 9c11da706d9b7902c6da69c592f75637793fe121
   subpackages:
+  - internal
   - redis
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
@@ -33,6 +34,11 @@ imports:
   version: b84e30acd515aadc4b783ad4ff83aff3299bdfe0
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/smartystreets/assertions
+  version: 7678a5452ebea5b7090a6b163f844c133f523da2
+  subpackages:
+  - internal/go-render/render
+  - internal/oglematchers
 - name: github.com/tuneinc/truss
   version: 7dc4d5d85c38d1e393875bb52ec3130828f493ea
   subpackages:
@@ -94,4 +100,31 @@ imports:
   - stats
   - status
   - tap
-testImports: []
+testImports:
+- name: github.com/davecgh/go-spew
+  version: 346938d642f2ec3594ed81d874461961cd0faa76
+  subpackages:
+  - spew
+- name: github.com/gopherjs/gopherjs
+  version: 0892b62f0d9fb5857760c3cfca837207185117ee
+  subpackages:
+  - js
+- name: github.com/jtolds/gls
+  version: 77f18212c9c7edc9bd6a33d383a7b545ce62f064
+- name: github.com/pmezard/go-difflib
+  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  subpackages:
+  - difflib
+- name: github.com/smartystreets/goconvey
+  version: ef6db91d284a0e7badaa1f0c404c30aa7dee3aed
+  subpackages:
+  - convey
+  - convey/gotest
+  - convey/reporting
+- name: github.com/stretchr/objx
+  version: b8b73a35e9830ae509858c10dec5866b4d5c8bff
+- name: github.com/stretchr/testify
+  version: f35b8ab0b5a2cef36673838d662e249dd9c94686
+  subpackages:
+  - assert
+  - mock

@@ -63,8 +63,8 @@ func New(instance string, options ...ClientOption) (pb.UserServer, error) {
 	var GetUsernameV1ZeroEndpoint endpoint.Endpoint
 	{
 		GetUsernameV1ZeroEndpoint = httptransport.NewClient(
-			"POST",
-			copyURL(u, "get"),
+			"GET",
+			copyURL(u, "/user/username/v1"),
 			EncodeHTTPGetUsernameV1ZeroRequest,
 			DecodeHTTPGetUsernameV1Response,
 			clientOptions...,
@@ -157,7 +157,10 @@ func EncodeHTTPGetUsernameV1ZeroRequest(_ context.Context, r *http.Request, requ
 
 	// Set the path parameters
 	path := strings.Join([]string{
-		"get",
+		"",
+		"user",
+		"username",
+		"v1",
 	}, "/")
 	u, err := url.Parse(path)
 	if err != nil {

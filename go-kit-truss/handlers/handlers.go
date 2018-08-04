@@ -3,23 +3,27 @@ package handlers
 import (
 	"context"
 
-	pb "go-test-demo/go-kit-truss/pb"
+	"github.com/gomodule/redigo/redis"
+	"go-test-demo/go-kit-truss/pb"
 )
 
-// NewService returns a naïve, stateless implementation of Service.
-func NewService() pb.UserServer {
-	return userService{}
+func NewService(redisConn redis.Conn) UserService {
+	return UserService{redisConn}
 }
 
-type userService struct{}
+type UserService struct {
+	RedisConn redis.Conn
+}
 
 // GetUsernameV1 implements Service.
-func (s userService) GetUsernameV1(ctx context.Context, in *pb.Req) (*pb.Resp, error) {
+func (s UserService) GetUsernameV1(ctx context.Context, in *pb.Req) (*pb.Resp, error) {
+	username, _ := redis.String(s.RedisConn.Do("GET", in.Id))
+
 	var resp pb.Resp
 	resp = pb.Resp{
-		// Code:
-		// Msg:
-		// Data:
+		Code: 200,
+		Msg:  "success",
+		Data: username,
 	}
 	return &resp, nil
 }

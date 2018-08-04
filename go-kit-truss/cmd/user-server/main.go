@@ -7,7 +7,7 @@ import (
 	"go-test-demo/go-kit-truss/svc/server"
 	"go-test-demo/go-kit-truss/svc/server/cli"
 
-	_ "go-test-demo/go-kit-truss/global"
+	_ "go-test-demo/go-kit-truss/di"
 )
 
 func main() {

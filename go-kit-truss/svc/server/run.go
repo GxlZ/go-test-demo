@@ -11,8 +11,10 @@ import (
 
 	// This Service
 	"go-test-demo/go-kit-truss/handlers"
-	pb "go-test-demo/go-kit-truss/pb"
+	"go-test-demo/go-kit-truss/pb"
 	"go-test-demo/go-kit-truss/svc"
+
+	"go-test-demo/go-kit-truss/di"
 )
 
 // Config contains the required fields for running a server
@@ -26,9 +28,17 @@ func NewEndpoints() svc.Endpoints {
 	// Business domain.
 	var service pb.UserServer
 	{
-		service = handlers.NewService()
+		err := di.Container.Invoke(func(s handlers.UserService) {
+			service = s
+		})
+
+		if err != nil {
+			log.Fatalln(err)
+		}
+
 		// Wrap Service with middlewares. See handlers/middlewares.go
 		service = handlers.WrapService(service)
+
 	}
 
 	// Endpoint domain.

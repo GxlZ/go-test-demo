@@ -40,7 +40,7 @@ func New(conn *grpc.ClientConn, options ...ClientOption) (pb.UserServer, error) 
 	{
 		getusernamev1Endpoint = grpctransport.NewClient(
 			conn,
-			"hello.User",
+			"pb.User",
 			"GetUsernameV1",
 			EncodeGRPCGetUsernameV1Request,
 			DecodeGRPCGetUsernameV1Response,
